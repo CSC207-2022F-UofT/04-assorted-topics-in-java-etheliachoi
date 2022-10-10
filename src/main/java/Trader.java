@@ -39,7 +39,17 @@ public class Trader<T> {
      *       representing the Trader's money. Give the Trader
      *       empty ArrayLists for their inventory and wishlist.
      */
-
+    /**
+     * Construct a DomesticatableTrader, giving them the
+     * entered amount of money and an empty wishlist and inventory.
+     *
+     * @param money     The Trader's money
+     */
+    public Trader(int money) {
+        this.money = money;
+        this.wishlist = new ArrayList<>();
+        this.inventory = new ArrayList<>();
+    }
 
 
 
@@ -47,6 +57,9 @@ public class Trader<T> {
     /* TODO: Implement the method addToWishlist that takes an
      *       object of type T and adds it to this Trader's wishlist.
      */
+    public void addToWishlist(T item) {
+        this.wishlist.add(item);
+    }
 
 
 
@@ -59,6 +72,13 @@ public class Trader<T> {
      *
      *       We will call this in exchangeMoney().
      */
+    public int getSellingPrice(T item) {
+        if (item instanceof Tradable) {
+            return ((Tradable) item).getPrice();
+        } else {
+            return Tradable.MISSING_PRICE;
+        }
+    }
 
 
 
